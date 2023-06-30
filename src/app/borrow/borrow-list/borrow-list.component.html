@@ -1,0 +1,55 @@
+   <!-- <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Borrow Date</th>
+        <th scope="col">Return Date</th>
+        <th scope="col">Returned</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let borrow of borrows">
+        <th scope="row">{{ borrow.borrowId }}</th>
+        <td>{{ borrow.borrowDate | date }}</td>
+        <td>{{ borrow.returnDate | date }}</td>
+        <td>{{ borrow.returned }}</td>
+      </tr>
+    </tbody>
+  </table>
+   -->
+   <!-- <button class="btn btn-primary" *ngIf="borrow.returned === 0 && borrowedBook.id" (click)="returnBook(borrowedBook.id)">Return</button> -->
+   <!-- borrow-list.component.html -->
+
+   <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Borrow ID</th>
+        <th>Borrow Date</th>
+        <th>Return Date</th>
+        <th>Returned</th>
+        <th>Borrowed Books</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let borrow of borrows">
+        <td>{{ borrow.borrowId }}</td>
+        <td>{{ borrow.borrowDate }}</td>
+        <td>{{ borrow.returnDate }}</td>
+        <td>{{ borrow.returned === 0 ? 'Not Returned' : 'Returned' }}</td>
+        <td *ngFor="let borrowedBook of borrow.borrowedBooks">{{ borrowedBook.book?.title }}</td>
+        <td>
+          <ng-container *ngFor="let borrowedBook of borrow.borrowedBooks">
+            <button class="btn btn-primary" *ngIf="borrow.returned === 0" (click)="returnBook(borrowedBook.id)">Return</button>
+          </ng-container>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  
+  
+  
+  

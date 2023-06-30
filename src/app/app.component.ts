@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { usersMenu, booksMenu } from 'projects/shared/src/public-api';
+import { MenuItem } from 'projects/shared/src/public-api';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'library-management-system';
+  title = 'Library Management System';
+
+  usersMenu = usersMenu;
+  productsMenu = booksMenu;
 }

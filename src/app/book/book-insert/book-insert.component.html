@@ -1,0 +1,39 @@
+<h1>Create Book</h1>
+
+<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label for="title" class="form-label">Title:</label>
+        <input id="title" type="text" class="form-control" formControlName="title">
+    </div>
+
+    <div class="mb-3">
+        <label for="author" class="form-label">Author:</label>
+        <input id="author" type="text" class="form-control" formControlName="author">
+    </div>
+
+    <div class="mb-3">
+        <label for="isbn" class="form-label">ISBN:</label>
+        <input id="isbn" type="text" class="form-control" formControlName="isbn">
+    </div>
+
+    <div class="mb-3">
+        <label for="publisher" class="form-label">Publisher:</label>
+        <input id="publisher" type="text" class="form-control" formControlName="publisher">
+    </div>
+
+    <div class="mb-3">
+        <label for="pages" class="form-label">Pages:</label>
+        <input id="pages" type="number" class="form-control" formControlName="pages">
+    </div>
+
+    <div class="mb-3">
+        <label for="status" class="form-label">Status:</label>
+        <input id="status" type="number" class="form-control" formControlName="status">
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-success">Create Book</button>
+        <button routerLink="/listBook" class="btn btn-danger ms-3">Cancel</button>
+
+    </div>
+</form>

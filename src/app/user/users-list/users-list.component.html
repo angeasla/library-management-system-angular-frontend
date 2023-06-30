@@ -1,0 +1,28 @@
+<h1>Users</h1>
+
+<button routerLink="/createUser" class="btn btn-primary mb-3">Add New User</button>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.firstname}}</td>
+      <td>{{user.lastname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.phone}}</td>
+      <td>
+        <button [routerLink]="['/borrow', user.userId]" class="btn btn-primary me-2">Borrow Book(s)</button>
+        <button [routerLink]="['/updateuser', user.userId]" class="btn btn-warning me-2">Update</button>
+        <app-user-delete [userId]="user.userId" (onDeleted)="getAllUsers()"></app-user-delete>
+      </td>
+    </tr>
+  </tbody>
+</table>

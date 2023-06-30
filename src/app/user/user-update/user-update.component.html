@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Update User</h1>
+
+    <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+
+        <div class="mb-3 form-group">
+            <label for="firstname" class="form-label">Name:</label>
+            <input id="firstname" type="text" class="form-control" formControlName="firstname" name="firstname" required>
+        </div>
+    
+        <div class="mb-3 form-group">
+            <label for="lastname" class="form-label">Surname:</label>
+            <input id="lastname" type="text" class="form-control" formControlName="lastname" name="lastname" required>
+        </div>
+    
+        <div class="mb-3 form-group">
+            <label for="email" class="form-label">e-mail:</label>
+            <input id="email" type="text" class="form-control" formControlName="email" name="email" required>
+        </div>
+    
+        <div class="mb-3 form-group">
+            <label for="phone" class="form-label">Phone:</label>
+            <input id="phone" type="text" class="form-control" formControlName="phone" name="phone" required>
+        </div>
+    
+        <div class="mb-3 form-group">
+            <button type="submit" class="btn btn-success">Update Book</button>
+            <button routerLink="/listUser" class="btn btn-danger ms-3">Cancel</button>
+        </div>
+
+    </form>
+
+</div>

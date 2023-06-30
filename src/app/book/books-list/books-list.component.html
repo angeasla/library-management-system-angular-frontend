@@ -1,0 +1,32 @@
+<h1>Books</h1>
+
+<button routerLink="/createBook" class="btn btn-primary mb-3">Add New Book</button>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>ISBN</th>
+      <th>Publisher</th>
+      <th>Pages</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{book.title}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.isbn}}</td>
+      <td>{{book.publisher}}</td>
+      <td>{{book.pages}}</td>
+      <td>{{book.status}}</td>
+      <td>
+        <button [routerLink]="['/updateBook', book.bookId]" class="btn btn-warning me-2">Update</button>
+        <app-book-delete [bookId]="book.bookId" (onDeleted)="getAllBooks()"></app-book-delete>
+      </td>
+    </tr>
+  </tbody>
+</table>

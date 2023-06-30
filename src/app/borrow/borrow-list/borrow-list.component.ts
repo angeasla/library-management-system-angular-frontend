@@ -14,7 +14,7 @@ export class BorrowListComponent {
 
   ngOnInit(): void {
     this.borrowService.getAllBorrows().subscribe(data => {
-      this.borrows = data.filter(borrow => borrow.returned === 0); // filter the borrows that are not returned
+      this.borrows = data.filter(borrow => borrow.returned === 0); 
     });
   }
 
@@ -23,7 +23,7 @@ export class BorrowListComponent {
       return;
     }
     this.borrowService.returnBorrow(borrowedBookId).subscribe(() => {
-      this.ngOnInit(); // refresh the borrow list after a book is returned
+      this.ngOnInit(); 
     });
   }
 }

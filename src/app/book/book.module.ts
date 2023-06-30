@@ -13,9 +13,10 @@ import { BookUpdateComponent } from './book-update/book-update.component';
 
 
 const routes: Routes = [
-  { path: 'listBook', component: BooksListComponent },
-  { path: 'createBook', component: BookInsertComponent },
-  { path: 'updateBook/:bookId', component: BookUpdateComponent },
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: 'list', component: BooksListComponent },
+  { path: 'create', component: BookInsertComponent },
+  { path: 'update/:bookId', component: BookUpdateComponent },
 ]
 
 @NgModule({
@@ -29,12 +30,11 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule, 
     RouterModule.forChild(routes),
-    RouterModule.forRoot(routes),
     ReactiveFormsModule,
     MatSnackBarModule,
   ],
 
   providers: [ BookService ],
-  exports: [ BooksListComponent, BookInsertComponent ]
+  exports: [ BooksListComponent, BookInsertComponent, RouterModule ]
 })
 export class BookModule { }

@@ -30,11 +30,11 @@ export class BookInsertComponent {
   onSubmit() {
     if (this.bookForm.valid) {
       this.bookService.createBook(this.bookForm.value as Partial<Book>).subscribe(book => {
-        this.books.push(book); // add the new book to the list
+        this.books.push(book); 
         this.snackBar.open('Book created successfully!', '', {
-          duration: 4000, // Show the notification for 4 seconds
+          duration: 4000, 
         });
-        this.router.navigate(['/listBook']);
+        this.router.navigate(['/book/list']);
       });
     }
   }

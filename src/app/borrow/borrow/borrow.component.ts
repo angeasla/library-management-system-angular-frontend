@@ -98,7 +98,7 @@ export class BorrowComponent implements OnInit {
           this.snackBar.open('Borrow created successfully!', '', {
             duration: 4000, 
           });
-          this.router.navigate(['/user']);
+          this.router.navigate(['/user/list']);
         },
         error: (error) => {
           

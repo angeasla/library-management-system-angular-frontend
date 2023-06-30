@@ -13,6 +13,7 @@ export class UsersListComponent {
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    console.log("UsersListComponent Initiated");
     this.getAllUsers();
   }
 

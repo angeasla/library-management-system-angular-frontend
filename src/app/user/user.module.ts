@@ -11,9 +11,11 @@ import { UserDeleteComponent } from './user-delete/user-delete.component';
 import { UserUpdateComponent } from './user-update/user-update.component';
 
 const routes: Routes = [
-  { path: 'listUser', component: UsersListComponent },
-  { path: 'createUser', component: UserInsertComponent },
-  { path: 'updateuser/:userId', component: UserUpdateComponent },
+
+  { path: '', redirectTo: 'listUser', pathMatch: 'full' },
+  { path: 'list', component: UsersListComponent },
+  { path: 'create', component: UserInsertComponent },
+  { path: 'update/:userId', component: UserUpdateComponent },
 ]
 
 @NgModule({
@@ -21,13 +23,12 @@ const routes: Routes = [
     UsersListComponent,
     UserInsertComponent,
     UserDeleteComponent,
-    UserUpdateComponent
+    UserUpdateComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule, 
     RouterModule.forChild(routes),
-    RouterModule.forRoot(routes),
     ReactiveFormsModule,
     MatSnackBarModule,
   ],

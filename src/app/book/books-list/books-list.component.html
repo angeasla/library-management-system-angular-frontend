@@ -1,10 +1,10 @@
-<h1>Books</h1>
+<h2>Books</h2>
 
-<button routerLink="/createBook" class="btn btn-primary mb-3">Add New Book</button>
+<button routerLink="/book/create" class="btn btn-success mb-3">Add New Book</button>
 
 
 <table class="table table-striped">
-  <thead>
+  <thead class="table-info">
     <tr>
       <th>Title</th>
       <th>Author</th>
@@ -24,7 +24,7 @@
       <td>{{book.pages}}</td>
       <td>{{book.status}}</td>
       <td>
-        <button [routerLink]="['/updateBook', book.bookId]" class="btn btn-warning me-2">Update</button>
+        <button [routerLink]="['/book/update', book.bookId]" class="btn btn-warning me-2">Update</button>
         <app-book-delete [bookId]="book.bookId" (onDeleted)="getAllBooks()"></app-book-delete>
       </td>
     </tr>

@@ -32,7 +32,7 @@ export class UserInsertComponent {
           this.snackBar.open('User created successfully!', '', {
             duration: 4000, 
           });
-          this.router.navigate(['/listUser']);
+          this.router.navigate(['/user/list']);
         });
       }
     }

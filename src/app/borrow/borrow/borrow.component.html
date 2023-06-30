@@ -1,5 +1,7 @@
+  <h1>Borrow Book</h1>
+  
   <form [formGroup]="borrowForm" (ngSubmit)="onSubmit()">
-    <div formArrayName="books">
+    <div class="mt-5" formArrayName="books">
       <div *ngFor="let bookControl of booksFormArray.controls; index as i" [formGroupName]="i">
         <mat-form-field class="example-full-width">
           <input formControlName="bookId" type="hidden">
@@ -10,10 +12,10 @@
             </mat-option>
           </mat-autocomplete>          
         </mat-form-field>
-        <button mat-button *ngIf="booksFormArray.length > 1" (click)="removeBookField(i)">Remove Book</button>
+        <button class="btn btn-danger ms-3" mat-button *ngIf="booksFormArray.length > 1" (click)="removeBookField(i)">Remove Book</button>
       </div>
     </div>
-    <button mat-button (click)="addBookField()">Add another book</button>
-    <button type="submit" mat-button>Borrow</button>
+    <button class="btn btn-primary" mat-button (click)="addBookField()">Add another book</button>
+    <button class="btn btn-success ms-3" type="submit" mat-button>Borrow</button>
   </form>
   

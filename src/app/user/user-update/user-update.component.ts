@@ -49,7 +49,7 @@ export class UserUpdateComponent implements OnInit {
         this.snackBar.open('User updated successfully!', '', {
           duration: 2000
         });
-        this.router.navigate(['/listUser']);
+        this.router.navigate(['/user/list']);
       });
     }
   }  

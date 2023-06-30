@@ -7,7 +7,7 @@ import { BorrowService } from './borrow.service';
 import { UserService } from '../user/user.service';
 import { BookService } from '../book/book.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Router, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BorrowListComponent } from './borrow-list/borrow-list.component';
@@ -16,8 +16,10 @@ import { BorrowListComponent } from './borrow-list/borrow-list.component';
 
 
 const routes: Routes = [
-  { path: '', component: BorrowComponent },
-  { path: 'listBorrow', component: BorrowListComponent },
+  
+  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: 'list', component: BorrowListComponent },
+  { path: 'borrow/:userId', component: BorrowComponent },
   
 ]
 

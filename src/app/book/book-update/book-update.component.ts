@@ -18,7 +18,7 @@ export class BookUpdateComponent implements OnInit {
     private bookService: BookService,
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder, // Inject FormBuilder
+    private fb: FormBuilder, 
     private snackBar: MatSnackBar
   ) {
     this.bookForm = this.fb.group({
@@ -55,7 +55,7 @@ export class BookUpdateComponent implements OnInit {
         this.snackBar.open('Book updated successfully!', '', {
           duration: 2000
         });
-        this.router.navigate(['/listBook']);
+        this.router.navigate(['/book/list']);
       });
     }
   }  

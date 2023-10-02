@@ -1,7 +1,6 @@
 <h2>Books</h2>
 
-<button routerLink="/book/create" class="btn btn-success mb-3">Add New Book</button>
-
+<button (click)="openCreateDialog()" class="btn btn-success mb-3">Add new book</button>
 
 <table class="table table-striped">
   <thead class="table-info">
@@ -11,22 +10,27 @@
       <th>ISBN</th>
       <th>Publisher</th>
       <th>Pages</th>
-      <th>Status</th>
+      <th>Publication Year</th>
+      <th>Quantity</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let book of books">
       <td>{{book.title}}</td>
-      <td>{{book.author}}</td>
+      <td>{{ isAuthorObject(book.author) ? (book.author.firstname + ' ' + book.author.lastname) : book.author }}</td>
       <td>{{book.isbn}}</td>
-      <td>{{book.publisher}}</td>
+      <td>{{ isPublisherObject(book.publisher) ? book.publisher.name : book.publisher }}</td>
       <td>{{book.pages}}</td>
-      <td>{{book.status}}</td>
+      <td>{{book.publicationYear}}</td>
+      <td>{{book.quantity}}</td>
       <td>
-        <button [routerLink]="['/book/update', book.bookId]" class="btn btn-warning me-2">Update</button>
+        <button (click)="borrowBookComponent?.openModal(book.bookId)" class="btn btn-primary me-2" [disabled]="book.quantity === 0">Borrow</button>
+        <button (click)="openUpdateDialog(book.bookId)" class="btn btn-warning mx-2">Update</button>
         <app-book-delete [bookId]="book.bookId" (onDeleted)="getAllBooks()"></app-book-delete>
       </td>
     </tr>
   </tbody>
 </table>
+
+<app-borrow-book (bookBorrowed)="getAllBooks()"></app-borrow-book>

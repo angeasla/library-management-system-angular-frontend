@@ -1,0 +1,25 @@
+<h2>Authors</h2>
+
+<button (click)="openCreateDialog()" class="btn btn-success mb-3">Add New Author</button>
+
+<table class="table table-striped">
+  <thead class="table-info">
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let author of authors">
+      <td>{{author.firstname}}</td>
+      <td>{{author.lastname}}</td>
+      <td>        
+        <button (click)="openUpdateDialog(author.authorId)" class="btn btn-warning mx-2">Update</button>
+        <app-author-delete class="me-2" [authorId]="author.authorId" (onDeleted)="getAllAuthors()"></app-author-delete>
+        <button [routerLink]="['/author/books-by-author', author.authorId]" class="btn btn-primary me-2">View Books by {{ author.firstname }} {{ author.lastname }}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

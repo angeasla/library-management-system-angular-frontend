@@ -1,0 +1,23 @@
+<div class="container p-4">
+    <h3>Update Author {{ author?.firstname }} {{ author?.lastname }}</h3>
+
+    <form [formGroup]="authorForm" (ngSubmit)="updateAuthor()">
+
+        <div class="mb-3 form-group">
+            <label for="firstname" class="form-label">Name:</label>
+            <input id="firstname" type="text" class="form-control" formControlName="firstname" name="firstname" required>
+        </div>
+
+        <div class="mb-3 form-group">
+            <label for="lastname" class="form-label">Surname:</label>
+            <input id="lastname" type="text" class="form-control" formControlName="lastname" name="lastname" required>
+        </div>
+
+        <div class="mb-3 form-group">
+            <button type="submit" class="btn btn-primary">Update Author</button>
+            <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>
+        </div>
+
+    </form>
+
+</div>

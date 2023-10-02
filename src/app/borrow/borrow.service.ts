@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Borrow } from 'projects/shared/src/lib/borrow.interfaces';
+import { Observable, Subject, tap } from 'rxjs';
+import { Borrow, Book, User } from 'projects/shared/src/public-api';
 
-@Injectable()
-export class BorrowService {
-  private API_URL = 'http://localhost:8080/api/borrows/';
+const BORROW_API = 'http://localhost:8080/api/borrows';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BorrowService { 
+  private bookReturnedSubject = new Subject<void>();
+  public bookReturned$ = this.bookReturnedSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -15,15 +20,32 @@ export class BorrowService {
       books: bookTitles,
     };
 
-    return this.http.post(this.API_URL, borrowRequest);
+    return this.http.post(BORROW_API, borrowRequest);
   }
 
-  getAllBorrows(): Observable<Borrow[]> {
-    return this.http.get<Borrow[]>(`${this.API_URL}`);
+  returnBook(userId: number, bookId: number): Observable<any> {
+    const returnRequest = {
+      userId: userId,
+      bookId: bookId
+    };
+    
+    return this.http.post(`${BORROW_API}/return`, returnRequest)
+    .pipe(
+      tap(() => {
+        this.bookReturnedSubject.next();  
+      })
+    );
   }
+
+  getActiveBorrows(): Observable<Borrow[]> {
+    return this.http.get<Borrow[]>(`${BORROW_API}/active`);
+}
 
   returnBorrow(borrowedBookId: number): Observable<any> {
-    return this.http.put(`${this.API_URL}return/${borrowedBookId}`, {});
+    return this.http.put(`${BORROW_API}return/${borrowedBookId}`, {});
   }
 
+  getActiveBorrowsByUserId(userId: number): Observable<any> {
+    return this.http.get<any>(`${BORROW_API}/active/user/${userId}`);
+  }
 }

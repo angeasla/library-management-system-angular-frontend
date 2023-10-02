@@ -1,5 +1,5 @@
-<div class="container">
-    <h1>Update User</h1>
+<div class="container p-4">
+    <h3>Update User: {{ user?.firstname }} {{ user?.lastname }}</h3>
 
     <form [formGroup]="userForm" (ngSubmit)="updateUser()">
 
@@ -24,8 +24,8 @@
         </div>
     
         <div class="mb-3 form-group">
-            <button type="submit" class="btn btn-success">Update Book</button>
-            <button routerLink="/user/list" class="btn btn-danger ms-3">Cancel</button>
+            <button type="submit" class="btn btn-primary">Update User</button>
+            <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>
         </div>
 
     </form>

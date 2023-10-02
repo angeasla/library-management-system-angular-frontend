@@ -1,39 +1,49 @@
-<h1>Create Book</h1>
+<div class="container p-4">
+    <h3>Create Book</h3>
 
-<form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-        <label for="title" class="form-label">Title:</label>
-        <input id="title" type="text" class="form-control" formControlName="title">
-    </div>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title:</label>
+            <input id="title" type="text" class="form-control" formControlName="title">
+        </div>
 
-    <div class="mb-3">
-        <label for="author" class="form-label">Author:</label>
-        <input id="author" type="text" class="form-control" formControlName="author">
-    </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author:</label>
+            <select id="author" class="form-select" formControlName="author">
+                <option *ngFor="let author of authors" [ngValue]="author.authorId">{{ author.firstname }} {{ author.lastname }}</option>
+            </select>
+        </div>
 
-    <div class="mb-3">
-        <label for="isbn" class="form-label">ISBN:</label>
-        <input id="isbn" type="text" class="form-control" formControlName="isbn">
-    </div>
+        <div class="mb-3">
+            <label for="isbn" class="form-label">ISBN:</label>
+            <input id="isbn" type="text" class="form-control" formControlName="isbn">
+        </div>
 
-    <div class="mb-3">
-        <label for="publisher" class="form-label">Publisher:</label>
-        <input id="publisher" type="text" class="form-control" formControlName="publisher">
-    </div>
+        <div class="mb-3">
+            <label for="publisher" class="form-label">Publisher:</label>
+            <select id="publisher" class="form-select" formControlName="publisher">
+                <option *ngFor="let publisher of publishers" [ngValue]="publisher.publisherId">{{ publisher.name }}</option>
+            </select>
+        </div>
 
-    <div class="mb-3">
-        <label for="pages" class="form-label">Pages:</label>
-        <input id="pages" type="number" class="form-control" formControlName="pages">
-    </div>
+        <div class="mb-3">
+            <label for="pages" class="form-label">Pages:</label>
+            <input id="pages" type="number" class="form-control" formControlName="pages">
+        </div>
 
-    <div class="mb-3">
-        <label for="status" class="form-label">Status:</label>
-        <input id="status" type="number" class="form-control" formControlName="status">
-    </div>
+        <div class="mb-3">
+            <label for="publicationYear" class="form-label">Publication year:</label>
+            <input id="publicationYear" type="number" class="form-control" formControlName="publicationYear">
+        </div>
 
-    <div class="mb-3">
-        <button type="submit" class="btn btn-success">Create Book</button>
-        <button routerLink="/listBook" class="btn btn-danger ms-3">Cancel</button>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input id="quantity" type="number" class="form-control" formControlName="quantity">
+        </div>
 
-    </div>
-</form>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Create Book</button>
+            <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>
+        </div>
+    </form>
+</div>

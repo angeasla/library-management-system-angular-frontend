@@ -9,14 +9,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookDeleteComponent } from './book-delete/book-delete.component';
 import { BookUpdateComponent } from './book-update/book-update.component';
-
-
+import { BorrowBookComponent } from './borrow-book/borrow-book.component';
+import { BorrowModule } from '../borrow/borrow.module'; 
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: BooksListComponent },
-  { path: 'create', component: BookInsertComponent },
-  { path: 'update/:bookId', component: BookUpdateComponent },
+  { path: '', redirectTo: 'books-list', pathMatch: 'full' },
+  { path: 'books-list', component: BooksListComponent },
+  { path: 'create-book', component: BookInsertComponent },
+  { path: 'update-book/:bookId', component: BookUpdateComponent },
 ]
 
 @NgModule({
@@ -24,7 +26,8 @@ const routes: Routes = [
     BooksListComponent,
     BookInsertComponent,
     BookDeleteComponent,
-    BookUpdateComponent
+    BookUpdateComponent,
+    BorrowBookComponent
   ],
   imports: [
     CommonModule,
@@ -32,9 +35,12 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     MatSnackBarModule,
+    BorrowModule,
+    FormsModule,
+    MatDialogModule
   ],
 
   providers: [ BookService ],
-  exports: [ BooksListComponent, BookInsertComponent, RouterModule ]
+  exports: [ BooksListComponent, BookInsertComponent, BookDeleteComponent, RouterModule ]
 })
 export class BookModule { }

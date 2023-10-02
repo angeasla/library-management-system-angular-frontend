@@ -1,0 +1,22 @@
+<h2>Publishers</h2>
+
+<button (click)="openCreateDialog()" class="btn btn-success mb-3">Add new Publisher</button>
+
+<table class="table table-striped">
+  <thead class="table-info">
+    <tr>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let publisher of publishers">
+      <td>{{publisher.name}}</td>
+      <td>        
+        <button (click)="openUpdateDialog(publisher.publisherId)" class="btn btn-warning mx-2">Update</button>
+        <app-publisher-delete class="me-2" [publisherId]="publisher.publisherId" (onDeleted)="getAllPublishers()"></app-publisher-delete>
+        <button [routerLink]="['/publisher/books-by-publisher', publisher.publisherId]" class="btn btn-primary me-2">View Books by {{ publisher.name }}</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

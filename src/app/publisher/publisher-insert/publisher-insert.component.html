@@ -1,0 +1,15 @@
+<div class="container p-4">
+    <h1>Create Publisher</h1>
+
+    <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input id="name" type="text" class="form-control" formControlName="name">
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Create Publisher</button>
+            <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>
+        </div>
+    </form>
+</div>

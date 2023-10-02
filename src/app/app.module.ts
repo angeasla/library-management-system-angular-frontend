@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppComponent } from './app.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { SharedModule } from 'projects/shared/src/public-api';
@@ -10,14 +9,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
-
-
 const routes: Routes = [  
 
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'book', loadChildren: () => import('./book/book.module').then(m => m.BookModule) },
+  { path: 'author', loadChildren: () => import('./author/author.module').then(m => m.AuthorModule)},
+  { path: 'publisher', loadChildren: () => import('./publisher/publisher.module').then(m => m.PublisherModule) },
   { path: 'borrow', loadChildren: () => import('./borrow/borrow.module').then(m => m.BorrowModule) },
 
 

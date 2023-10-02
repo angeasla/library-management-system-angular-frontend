@@ -1,0 +1,18 @@
+<div class="container p-4">
+    <h3>Update Publisher: "{{ publisher?.name }}"</h3>
+
+    <form [formGroup]="publisherForm" (ngSubmit)="updatePublisher()">
+
+        <div class="mb-3 form-group">
+            <label for="name" class="form-label">Name:</label>
+            <input id="name" type="text" class="form-control" formControlName="name" name="name" required>
+        </div>
+
+        <div class="mb-3 form-group">
+            <button type="submit" class="btn btn-primary">Update Publisher</button>
+            <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>
+        </div>
+
+    </form>
+
+</div>

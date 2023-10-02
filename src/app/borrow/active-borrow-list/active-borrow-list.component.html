@@ -1,0 +1,30 @@
+<h2>Active Borrows</h2>
+
+<table class="table table-striped">
+    <thead class="table-info">
+        <tr>
+            <th>User Name</th>
+            <th>Book Title</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+            <th>Returned</th>
+            <th>Actions</th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let borrow of activeBorrows">
+            <td>{{borrow.userName}}</td>
+            <td>{{borrow.bookTitle}}</td>
+            <td>{{borrow.borrow.borrowDate}}</td>
+            <td>{{borrow.borrow.returnDate || 'Not Returned'}}</td>
+            <td>{{borrow.borrow.returned ? 'Yes' : 'No'}}</td>
+            <td>
+                <app-return-book 
+                [userId]="borrow.borrow.id.userId" 
+                [bookId]="borrow.borrow.id.bookId"
+                (bookReturned)="loadActiveBorrows()"></app-return-book>
+            </td>
+          </tr>
+    </tbody>
+
+</table>

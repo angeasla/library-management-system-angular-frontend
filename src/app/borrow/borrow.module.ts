@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BorrowComponent } from './borrow/borrow.component';
 import { MatAutocompleteModule} from '@angular/material/autocomplete'
 import { ReactiveFormsModule } from '@angular/forms';
 import { BorrowService } from './borrow.service';
@@ -10,23 +9,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { BorrowListComponent } from './borrow-list/borrow-list.component';
-
+import { ActiveBorrowListComponent } from './active-borrow-list/active-borrow-list.component';
+import { DatePipe } from '@angular/common';
+import { ReturnBookComponent } from './return-book/return-book.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 const routes: Routes = [
   
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: 'list', component: BorrowListComponent },
-  { path: 'borrow/:userId', component: BorrowComponent },
+  { path: '', redirectTo: 'active-borrows-list', pathMatch: 'full' },
+  { path: 'active-borrows-list', component: ActiveBorrowListComponent },
   
 ]
 
 @NgModule({
   declarations: [
-    BorrowComponent,
-    BorrowListComponent,
+    ActiveBorrowListComponent,
+    ReturnBookComponent,
   ],
   imports: [
     CommonModule,
@@ -36,9 +36,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    FormsModule,
   ],
 
-  providers: [BorrowService, UserService, BookService],
-  exports: [BorrowComponent, RouterModule]
+  providers: [BorrowService, UserService, BookService, DatePipe],
+  exports: [ RouterModule, ReturnBookComponent]
 })
 export class BorrowModule { }

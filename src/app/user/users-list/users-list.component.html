@@ -1,6 +1,6 @@
 <h2>Users</h2>
 
-<button routerLink="/user/create" class="btn btn-success mb-3">Add New User</button>
+<button (click)="openCreateDialog()" class="btn btn-success mb-3">Add New User</button>
 
 <table class="table table-striped">
   <thead class="table-info">
@@ -18,10 +18,9 @@
       <td>{{user.lastname}}</td>
       <td>{{user.email}}</td>
       <td>{{user.phone}}</td>
-      <td>
-        <button [routerLink]="['/borrow/', user.userId]" class="btn btn-primary me-2">Borrow Book(s)</button>
-        
-        <button [routerLink]="['/user/update', user.userId]" class="btn btn-warning me-2">Update</button>
+      <td>       
+        <button (click)="openActiveBorrowsDialog(user.userId)" class="btn btn-primary mx-2">Active borrows</button>
+        <button (click)="openUpdateDialog(user.userId)" class="btn btn-warning mx-2">Update</button>
         <app-user-delete [userId]="user.userId" (onDeleted)="getAllUsers()"></app-user-delete>
       </td>
     </tr>

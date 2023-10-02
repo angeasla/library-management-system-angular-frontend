@@ -1,28 +1,30 @@
-<h1>Create User</h1>
+<div class="container p-4">
+<h3>Create User</h3>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-        <label for="firstname" class="form-label">Name:</label>
-        <input id="firstname" type="text" class="form-control" formControlName="firstname">
-    </div>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="firstname" class="form-label">Name:</label>
+            <input id="firstname" type="text" class="form-control" formControlName="firstname">
+        </div>
 
-    <div class="mb-3">
-        <label for="lastname" class="form-label">Surname:</label>
-        <input id="lastname" type="text" class="form-control" formControlName="lastname">
-    </div>
+        <div class="mb-3">
+            <label for="lastname" class="form-label">Surname:</label>
+            <input id="lastname" type="text" class="form-control" formControlName="lastname">
+        </div>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">e-mail:</label>
-        <input id="email" type="text" class="form-control" formControlName="email">
-    </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">e-mail:</label>
+            <input id="email" type="text" class="form-control" formControlName="email">
+        </div>
 
-    <div class="mb-3">
-        <label for="phone" class="form-label">Phone number:</label>
-        <input id="phone" type="text" class="form-control" formControlName="phone">
-    </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone number:</label>
+            <input id="phone" type="text" class="form-control" formControlName="phone">
+        </div>
 
-    <div class="mb-3">
-        <button type="submit" class="btn btn-success">Create User</button>
-        <button routerLink="/user/list" class="btn btn-danger ms-3">Cancel</button>
-    </div>
-</form>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Create User</button>
+            <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>
+        </div>
+    </form>
+</div>

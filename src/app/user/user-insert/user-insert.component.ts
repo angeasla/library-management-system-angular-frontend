@@ -4,6 +4,7 @@ import { User } from 'projects/shared/src/public-api';
 import { UserService } from '../user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MAT_DIALOG_DATA ,MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-insert',
@@ -12,10 +13,12 @@ import { Router } from '@angular/router';
 })
 export class UserInsertComponent {
   users: User[] = [];
+  userId: number | null = null;
 
   constructor(
     private userService: UserService,
     private snackBar: MatSnackBar, 
+    public dialogRef: MatDialogRef<UserInsertComponent>,
     private router: Router) { }
 
     userForm = new FormGroup({
@@ -32,11 +35,14 @@ export class UserInsertComponent {
           this.snackBar.open('User created successfully!', '', {
             duration: 4000, 
           });
-          this.router.navigate(['/user/list']);
+          this.dialogRef.close();
         });
       }
     }
-    
+
+    onCancelClick(): void {
+      this.dialogRef.close();
+    }
 }
 
 

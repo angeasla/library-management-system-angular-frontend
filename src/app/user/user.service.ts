@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'projects/shared/src/public-api';
 
@@ -15,6 +15,14 @@ export class UserService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${USERS_API}`);
+  }
+
+  getAllUsersWithPagination(page: number = 0, size: number = 10): Observable<any> {
+    const params = new HttpParams()
+      .set('page', String(page))
+      .set('size', String(size));
+
+    return this.http.get<any>(`${USERS_API}/pagination`, { params });
   }
 
   getUserById(userId: number): Observable<User> {

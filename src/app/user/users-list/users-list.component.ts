@@ -13,6 +13,10 @@ import { UserActiveBorrowsComponent } from '../user-active-borrows/user-active-b
 })
 export class UsersListComponent implements OnInit {
   users: User[] = [];
+  totalUsers = 0;
+  pageSize = 10;
+  currentPage = 0;
+  pageNumbers: number[] = [];
 
   constructor(
     private userService: UserService,
@@ -20,14 +24,26 @@ export class UsersListComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    console.log("UsersListComponent Initiated");
-    this.getAllUsers();
+    this.getAllUsersWithPagination(this.currentPage);
   }
 
   getAllUsers(): void {
     this.userService.getAllUsers().subscribe(users => {
       this.users = users;
     });
+  }
+
+  getAllUsersWithPagination(page: number): void {
+    this.userService.getAllUsersWithPagination(page, this.pageSize).subscribe({
+      next: response => {
+          this.users = response.content;
+          this.totalUsers = response.totalElements; 
+          this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
+      },
+      error: error => {
+          console.error("Error fetching users:", error);
+      }
+    });  
   }
 
   openUpdateDialog(userId: number): void {
@@ -37,7 +53,7 @@ export class UsersListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllUsers();
+      this.getAllUsersWithPagination(0);
     });
   }
 
@@ -48,7 +64,7 @@ export class UsersListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllUsers();
+      this.getAllUsersWithPagination(0);
     });
   }
 
@@ -59,7 +75,15 @@ export class UsersListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllUsers();
+      this.getAllUsersWithPagination(0);
     });
+  }
+
+  onPageChange(newPage: number): void {
+    if(newPage >= 0 && newPage < this.pageNumbers.length) {
+      this.currentPage = newPage;
+      // Fetch the users for the new page by calling an API with pagination.
+      this.getAllUsersWithPagination(newPage);
+    }
   }
 }

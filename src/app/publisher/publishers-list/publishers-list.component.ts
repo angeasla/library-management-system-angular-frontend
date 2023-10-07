@@ -12,6 +12,10 @@ import { PublisherInsertComponent } from '../publisher-insert/publisher-insert.c
 })
 export class PublishersListComponent {
   publishers: Publisher[] = [];
+  totalPublishers = 0;
+  pageSize = 10;
+  currentPage = 0;
+  pageNumbers: number[] = [];
 
   constructor(
     private publisherService: PublisherService,
@@ -20,13 +24,26 @@ export class PublishersListComponent {
 
   ngOnInit(): void {
     console.log("PublishersListComponent Initiated");
-    this.getAllPublishers();
+    this.getAllPublishersWithPagination(this.currentPage);
   }
 
   getAllPublishers(): void {
     this.publisherService.getAllPublishers().subscribe(publishers => {
       this.publishers = publishers;
     });
+  }
+
+  getAllPublishersWithPagination(page: number): void {
+    this.publisherService.getAllPublishersWithPagination(page, this.pageSize).subscribe({
+      next: response => {
+          this.publishers = response.content;
+          this.totalPublishers = response.totalElements; 
+          this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
+      },
+      error: error => {
+          console.error("Error fetching publishers:", error);
+      }
+    });  
   }
 
   openUpdateDialog(publisherId: number): void {
@@ -36,7 +53,7 @@ export class PublishersListComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllPublishers();
+      this.getAllPublishersWithPagination(0);
     });
   }
 
@@ -47,7 +64,15 @@ export class PublishersListComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllPublishers();
+      this.getAllPublishersWithPagination(0);
     });
+  }
+
+  onPageChange(newPage: number): void {
+    if(newPage >= 0 && newPage < this.pageNumbers.length) {
+      this.currentPage = newPage;
+      // Fetch the publishers for the new page by calling an API with pagination.
+      this.getAllPublishersWithPagination(newPage);
+    }
   }
 }

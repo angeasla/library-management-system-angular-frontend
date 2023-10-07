@@ -12,6 +12,10 @@ import { AuthorInsertComponent } from '../author-insert/author-insert.component'
 })
 export class AuthorsListComponent implements OnInit {
   authors: Author[] = [];
+  totalAuthors = 0;
+  pageSize = 10;
+  currentPage = 0;
+  pageNumbers: number[] = [];
 
   constructor(
     private authorService: AuthorService,
@@ -19,12 +23,25 @@ export class AuthorsListComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
-    this.getAllAuthors();
+    this.getAllAuthorsWithPagination(this.currentPage);
   }
 
   getAllAuthors(): void {
     this.authorService.getAllAuthors().subscribe(authors => {
       this.authors = authors;
+    });
+  }
+
+  getAllAuthorsWithPagination(page: number): void {
+    this.authorService.getAllAuthorsWithPagination(page, this.pageSize).subscribe({
+      next: response => {
+          this.authors = response.content;
+          this.totalAuthors = response.totalElements; 
+          this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
+      },
+      error: error => {
+          console.error("Error fetching authors:", error);
+      }
     });
   }
 
@@ -48,5 +65,13 @@ export class AuthorsListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.getAllAuthors();
     });
+  }
+
+  onPageChange(newPage: number): void {
+    if(newPage >= 0 && newPage < this.pageNumbers.length) {
+      this.currentPage = newPage;
+      // Fetch the authors for the new page by calling an API with pagination.
+      this.getAllAuthorsWithPagination(newPage);
+    }
   }
 }

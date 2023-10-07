@@ -20,6 +20,14 @@ export class BookService {
     return this.http.get<Book[]>(`${BOOKS_API}`);
   }
 
+  getAllBooksWithPagination(page: number = 0, size: number = 10): Observable<any> {
+    const params = new HttpParams()
+      .set('page', String(page))
+      .set('size', String(size));
+
+    return this.http.get<any>(`${BOOKS_API}/pagination`, { params });
+  }
+
   getBookById(bookId: number): Observable<Book> {
     return this.http.get<Book>(`${BOOKS_API}/${bookId}`);
   }

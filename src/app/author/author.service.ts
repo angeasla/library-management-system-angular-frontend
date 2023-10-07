@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Author } from 'projects/shared/src/public-api';
 
@@ -16,6 +16,14 @@ export class AuthorService {
   getAllAuthors(): Observable<Author[]> {
     return this.http.get<Author[]>(`${AUTHORS_API}`);
   }
+
+  getAllAuthorsWithPagination(page: number = 0, size: number = 10): Observable<any> {
+    const params = new HttpParams()
+      .set('page', String(page))
+      .set('size', String(size));
+
+    return this.http.get<any>(`${AUTHORS_API}/pagination`, { params });
+  }  
 
   getAuthorById(authorId: number): Observable<Author> {
     return this.http.get<Author>(`${AUTHORS_API}/${authorId}`);

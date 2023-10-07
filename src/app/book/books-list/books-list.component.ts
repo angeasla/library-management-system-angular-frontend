@@ -14,6 +14,10 @@ import { BookInsertComponent } from '../book-insert/book-insert.component';
 })
 export class BooksListComponent implements OnInit {
   books: Book[] = [];
+  totalBooks = 0;
+  pageSize = 10;
+  currentPage = 0;
+  pageNumbers: number[] = [];
   @ViewChild(BorrowBookComponent, { static: false }) borrowBookComponent?: BorrowBookComponent;
 
   constructor(
@@ -24,7 +28,7 @@ export class BooksListComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllBooks();
+    this.getAllBooksWithPagination(this.currentPage);
   }
 
   getAllBooks(): void {
@@ -32,6 +36,19 @@ export class BooksListComponent implements OnInit {
       this.books = books;
     });
   }
+
+  getAllBooksWithPagination(page: number): void {
+    this.bookService.getAllBooksWithPagination(page, 10).subscribe({
+        next: response => {
+            this.books = response.content;
+            this.totalBooks = response.totalElements; 
+            this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
+        },
+        error: error => {
+            console.error("Error fetching books:", error);
+        }
+    });  
+}
 
   isPublisherObject(publisher: any): publisher is { publisherId: number; name?: string } {
     return publisher && typeof publisher === 'object' && 'name' in publisher;
@@ -48,7 +65,7 @@ export class BooksListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllBooks();
+      this.getAllBooksWithPagination(0);
     });
   }
 
@@ -59,7 +76,15 @@ export class BooksListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAllBooks();
+      this.getAllBooksWithPagination(0);
     });
+  }
+
+  onPageChange(newPage: number): void {
+    if(newPage >= 0 && newPage < this.pageNumbers.length) {
+      this.currentPage = newPage;
+      // Fetch the books for the new page by calling an API with pagination.
+      this.getAllBooksWithPagination(newPage);
+    }
   }
 }

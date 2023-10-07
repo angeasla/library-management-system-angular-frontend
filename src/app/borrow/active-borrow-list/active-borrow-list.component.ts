@@ -11,7 +11,7 @@ import { Subscription, forkJoin } from 'rxjs';
   templateUrl: './active-borrow-list.component.html',
   styleUrls: ['./active-borrow-list.component.css']
 })
-export class ActiveBorrowListComponent implements OnInit {
+export class ActiveBorrowListComponent {
   borrows: Borrow[] = [];
   bookDetailsArray: Book[] = [];  
   userDetailsArray: User[] = [];

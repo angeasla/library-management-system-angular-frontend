@@ -13,6 +13,7 @@ import { ActiveBorrowListComponent } from './active-borrow-list/active-borrow-li
 import { DatePipe } from '@angular/common';
 import { ReturnBookComponent } from './return-book/return-book.component';
 import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    MatSnackBarModule
   ],
 
   providers: [BorrowService, UserService, BookService, DatePipe],

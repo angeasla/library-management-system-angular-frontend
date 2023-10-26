@@ -1,44 +1,45 @@
 <div class="container p-4">
-    <h3>Update Book: "{{ book?.title }}"</h3>
+    <h3 class="text-center"><span class="badge bg-secondary">Update Book: {{ bookForm.value.title }}</span></h3>
+    <hr>
 
     <form [formGroup]="bookForm" (ngSubmit)="updateBook()">
 
         <div class="mb-3 form-group">
-            <label for="title" class="form-label">Title:</label>
+            <label for="title" class="form-label fw-bold">Title:</label>
             <input id="title" type="text" class="form-control" formControlName="title" name="title" required>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="author" class="form-label">Author:</label>
+            <label for="author" class="form-label fw-bold">Author:</label>
             <select id="author" class="form-control" formControlName="author" required>
                 <option *ngFor="let author of authors" [value]="author.authorId">{{ author.firstname }} {{ author.lastname }}</option>
             </select>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="isbn" class="form-label">ISBN:</label>
+            <label for="isbn" class="form-label fw-bold">ISBN:</label>
             <input id="isbn" type="text" class="form-control" formControlName="isbn" name="title" required>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="publisher" class="form-label">Publisher:</label>
+            <label for="publisher" class="form-label fw-bold">Publisher:</label>
             <select id="publisher" class="form-control" formControlName="publisher" required>
                 <option *ngFor="let publisher of publishers" [value]="publisher.publisherId">{{ publisher.name }}</option>
             </select>
         </div>        
     
         <div class="mb-3 form-group">
-            <label for="pages" class="form-label">Pages:</label>
+            <label for="pages" class="form-label fw-bold">Pages:</label>
             <input id="pages" type="number" class="form-control" formControlName="pages" name="title" required>
         </div>
 
         <div class="mb-3 form-group">
-            <label for="status" class="form-label">Publication year:</label>
+            <label for="status" class="form-label fw-bold">Publication year:</label>
             <input id="publicationYear" type="number" class="form-control" formControlName="publicationYear" name="title" required>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="status" class="form-label">Quantity:</label>
+            <label for="status" class="form-label fw-bold">Quantity:</label>
             <input id="quantity" type="number" class="form-control" formControlName="quantity" name="title" required>
         </div>
     

@@ -1,25 +1,26 @@
 <div class="container p-4">
-    <h3>Update User: {{ user?.firstname }} {{ user?.lastname }}</h3>
+    <h3 class="text-center"><span class="badge bg-secondary">Update User: {{ userForm.value.firstname }} {{ userForm.value.lastname }}</span></h3>
+    <hr>
 
     <form [formGroup]="userForm" (ngSubmit)="updateUser()">
 
         <div class="mb-3 form-group">
-            <label for="firstname" class="form-label">Name:</label>
+            <label for="firstname" class="form-label fw-bold">Name:</label>
             <input id="firstname" type="text" class="form-control" formControlName="firstname" name="firstname" required>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="lastname" class="form-label">Surname:</label>
+            <label for="lastname" class="form-label fw-bold">Surname:</label>
             <input id="lastname" type="text" class="form-control" formControlName="lastname" name="lastname" required>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="email" class="form-label">e-mail:</label>
+            <label for="email" class="form-label fw-bold">e-mail:</label>
             <input id="email" type="text" class="form-control" formControlName="email" name="email" required>
         </div>
     
         <div class="mb-3 form-group">
-            <label for="phone" class="form-label">Phone:</label>
+            <label for="phone" class="form-label fw-bold">Phone:</label>
             <input id="phone" type="text" class="form-control" formControlName="phone" name="phone" required>
         </div>
     

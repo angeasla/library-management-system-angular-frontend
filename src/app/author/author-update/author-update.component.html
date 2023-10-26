@@ -1,15 +1,16 @@
 <div class="container p-4">
-    <h3>Update Author {{ author?.firstname }} {{ author?.lastname }}</h3>
+    <h3 class="text-center"><span class="badge bg-secondary">Update Author: {{ authorForm.value.firstname }} {{ authorForm.value.lastname }}</span></h3>
+    <hr>
 
     <form [formGroup]="authorForm" (ngSubmit)="updateAuthor()">
 
         <div class="mb-3 form-group">
-            <label for="firstname" class="form-label">Name:</label>
+            <label for="firstname" class="form-label fw-bold">Name:</label>
             <input id="firstname" type="text" class="form-control" formControlName="firstname" name="firstname" required>
         </div>
 
         <div class="mb-3 form-group">
-            <label for="lastname" class="form-label">Surname:</label>
+            <label for="lastname" class="form-label fw-bold">Surname:</label>
             <input id="lastname" type="text" class="form-control" formControlName="lastname" name="lastname" required>
         </div>
 

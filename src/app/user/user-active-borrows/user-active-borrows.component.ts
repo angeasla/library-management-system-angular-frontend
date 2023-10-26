@@ -21,6 +21,8 @@ export class UserActiveBorrowsComponent implements OnInit {
   borrows: Borrow[] = [];
   bookDetailsArray: Book[] = [];
   activeBorrows: any[] = [];
+  userFirstname?: string;
+  userLastname?: string;
 
   constructor(
     private borrowService: BorrowService,
@@ -34,7 +36,16 @@ export class UserActiveBorrowsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.data.userId;
+    this.loadUserDetails();
     this.loadActiveBorrows();
+  }
+  loadUserDetails(): void {
+    if (this.userId !== undefined) {
+      this.userService.getUserById(this.userId).subscribe(user => {
+        this.userFirstname = user.firstname;
+        this.userLastname = user.lastname;
+      });
+    }
   }
 
   loadActiveBorrows(): void {
@@ -72,6 +83,8 @@ export class UserActiveBorrowsComponent implements OnInit {
       });
     }    
   }
+
+
 
   onCancelClick(): void {
     this.dialogRef.close();

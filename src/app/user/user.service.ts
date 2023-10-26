@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from 'projects/shared/src/public-api';
 
 const USERS_API = 'http://localhost:8080/api/users'
@@ -44,4 +44,20 @@ export class UserService {
   getActiveBorrowsByUserId(userId: number): Observable<any> {
     return this.http.get<any>(`${BORROW_API}/active/user/${userId}`);
   }
+
+  // getUserByPhone(phone: string): Observable<any> {
+  //   return this.http.get<User>(`${USERS_API}/search-by-phone/${phone}`);
+  // }
+  getUserByPhone(phone: string): Observable<User> {
+    return this.http.get<User>(`${USERS_API}/search-by-phone/${phone}`).pipe(
+        tap(data => {
+            console.log('Data received:', data);
+        }),
+        catchError(err => {
+            console.error('Error occurred:', err);
+            return throwError(err);
+        })
+    );
+}
+
 }

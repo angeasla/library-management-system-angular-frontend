@@ -1,37 +1,47 @@
-<ng-template #noBooks>
-    <h2>{{ publisher?.name }} has no books yet</h2>
-</ng-template>
+<div class="container">
+  <h1 *ngIf="publisher" class="text-center display-5"><span class="badge bg-dark">Books by {{ publisher.name }}</span></h1>
 
-<h2 *ngIf="publisher && isPublisherObject(publisher) && books.length > 0; else noBooks">Books by {{ publisher.name }}</h2>
+  <h4 *ngIf="publisher && books.length > 0; else noBooks" class="text-center">
+    {{ publisher.name }} has {{ books.length }} {{ books.length === 1 ? 'book' : 'books' }}
+  </h4>
 
-<button (click)="openCreateDialog()" class="btn btn-success mb-3">Add new book</button>
+  <ng-template #noBooks>
+    <h4 class="text-center">
+        {{ publisher?.name }} has no books yet
+    </h4>
+  </ng-template>
 
-<table class="table table-striped">
-  <thead class="table-info">
-    <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>ISBN</th>
-      <th>Publisher</th>
-      <th>Pages</th>
-      <th>Publication Year</th>
-      <th>Quantity</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let book of books">
-      <td>{{book.title}}</td>
-      <td>{{ isAuthorObject(book.author) ? (book.author.firstname + ' ' + book.author.lastname) : book.author }}</td>
-      <td>{{book.isbn}}</td>
-      <td>{{ isPublisherObject(book.publisher) ? book.publisher.name : book.publisher }}</td>
-      <td>{{book.pages}}</td>
-      <td>{{book.publicationYear}}</td>
-      <td>{{book.quantity}}</td>
-      <td>
-        <button (click)="openUpdateDialog(book.bookId)" class="btn btn-warning mx-2">Update</button>
-        <app-book-delete [bookId]="book.bookId" (onDeleted)="getBooksByPublisher(publisherId)"></app-book-delete>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <hr>
+
+  <button (click)="openCreateDialog()" class="btn btn-success mb-3">Add new book</button>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>ISBN</th>
+        <th>Publisher</th>
+        <th>Pages</th>
+        <th>Publication Year</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{book.title}}</td>
+        <td>{{ isAuthorObject(book.author) ? (book.author.firstname + ' ' + book.author.lastname) : book.author }}</td>
+        <td>{{book.isbn}}</td>
+        <td>{{ isPublisherObject(book.publisher) ? book.publisher.name : book.publisher }}</td>
+        <td>{{book.pages}}</td>
+        <td>{{book.publicationYear}}</td>
+        <td>{{book.quantity}}</td>
+        <td>
+          <button (click)="openUpdateDialog(book.bookId)" class="btn btn-outline-warning btn-sm mx-2">Update</button>
+          <app-book-delete [bookId]="book.bookId" (onDeleted)="getBooksByPublisher(publisherId)"></app-book-delete>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>

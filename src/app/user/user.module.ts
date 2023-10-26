@@ -13,6 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserActiveBorrowsComponent } from './user-active-borrows/user-active-borrows.component';
 import { BorrowModule } from '../borrow/borrow.module';
 import { BorrowService } from '../borrow/borrow.service';
+import { UserSearchByPhoneComponent } from './user-search-by-phone/user-search-by-phone.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
 
@@ -30,6 +32,7 @@ const routes: Routes = [
     UserDeleteComponent,
     UserUpdateComponent,
     UserActiveBorrowsComponent,
+    UserSearchByPhoneComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +41,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatDialogModule,
-    BorrowModule
+    BorrowModule,
+    FormsModule
   ],
 
   providers: [UserService, BorrowService],

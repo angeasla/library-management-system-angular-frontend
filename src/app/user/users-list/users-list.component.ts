@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../user.service';
 import { User } from 'projects/shared/src/public-api';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,14 +17,17 @@ export class UsersListComponent implements OnInit {
   pageSize = 10;
   currentPage = 0;
   pageNumbers: number[] = [];
+  searchedUser: User | null = null;
 
   constructor(
     private userService: UserService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cdRef:ChangeDetectorRef
     ) {}
 
   ngOnInit(): void {
     this.getAllUsersWithPagination(this.currentPage);
+    this.cdRef.detectChanges();
   }
 
   getAllUsers(): void {
@@ -36,14 +39,18 @@ export class UsersListComponent implements OnInit {
   getAllUsersWithPagination(page: number): void {
     this.userService.getAllUsersWithPagination(page, this.pageSize).subscribe({
       next: response => {
-          this.users = response.content;
-          this.totalUsers = response.totalElements; 
-          this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
+        this.users = response.content.map((user: { borrows: { filter: (arg0: (borrow: { returned: any; }) => boolean) => { (): any; new(): any; length: any; }; }; }) => ({
+          ...user,
+          activeBorrowCount: user.borrows.filter((borrow: { returned: any; }) => !borrow.returned).length
+        }));
+        this.totalUsers = response.totalElements; 
+        this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
+        console.log(this.users);
       },
       error: error => {
-          console.error("Error fetching users:", error);
+        console.error("Error fetching users:", error);
       }
-    });  
+    });
   }
 
   openUpdateDialog(userId: number): void {
@@ -70,7 +77,7 @@ export class UsersListComponent implements OnInit {
 
   openActiveBorrowsDialog(userId: number): void {
     const dialogRef = this.dialog.open(UserActiveBorrowsComponent, {
-      minWidth: '70%',
+      minWidth: '50%',
       data: { userId: userId }
     });
 
@@ -85,5 +92,9 @@ export class UsersListComponent implements OnInit {
       // Fetch the users for the new page by calling an API with pagination.
       this.getAllUsersWithPagination(newPage);
     }
+  }
+
+  displaySearchedUser(user: User): void {
+    this.searchedUser = user;
   }
 }

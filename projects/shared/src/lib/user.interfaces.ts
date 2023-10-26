@@ -4,4 +4,5 @@ export interface User {
     lastname: string;
     email: string;
     phone: string;
+    activeBorrowCount: number;
 }

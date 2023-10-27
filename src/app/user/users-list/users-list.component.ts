@@ -56,6 +56,7 @@ export class UsersListComponent implements OnInit {
   openUpdateDialog(userId: number): void {
     const dialogRef = this.dialog.open(UserUpdateComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { userId: userId }
     });
 
@@ -67,6 +68,7 @@ export class UsersListComponent implements OnInit {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(UserInsertComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { userId: null }
     });
 
@@ -78,6 +80,7 @@ export class UsersListComponent implements OnInit {
   openActiveBorrowsDialog(userId: number): void {
     const dialogRef = this.dialog.open(UserActiveBorrowsComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { userId: userId }
     });
 
@@ -96,5 +99,9 @@ export class UsersListComponent implements OnInit {
 
   displaySearchedUser(user: User): void {
     this.searchedUser = user;
+  }
+
+  backToUsersList(): void {
+    this.searchedUser = null;
   }
 }

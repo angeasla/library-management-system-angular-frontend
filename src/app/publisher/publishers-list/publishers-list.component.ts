@@ -49,6 +49,7 @@ export class PublishersListComponent {
   openUpdateDialog(publisherId: number): void {
     const dialogRef = this.dialog.open(PublisherUpdateComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { publisherId: publisherId }
     });
 
@@ -60,6 +61,7 @@ export class PublishersListComponent {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(PublisherInsertComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { publisherId: null }
     });
 

@@ -13,6 +13,7 @@ import { BorrowBookComponent } from './borrow-book/borrow-book.component';
 import { BorrowModule } from '../borrow/borrow.module'; 
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BookSearchByTitleComponent } from './book-search-by-title/book-search-by-title.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'books-list', pathMatch: 'full' },
@@ -21,13 +22,15 @@ const routes: Routes = [
   { path: 'update-book/:bookId', component: BookUpdateComponent },
 ]
 
+
 @NgModule({
   declarations: [
     BooksListComponent,
     BookInsertComponent,
     BookDeleteComponent,
     BookUpdateComponent,
-    BorrowBookComponent
+    BorrowBookComponent,
+    BookSearchByTitleComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,7 @@ const routes: Routes = [
     MatSnackBarModule,
     BorrowModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
 
   providers: [ BookService ],

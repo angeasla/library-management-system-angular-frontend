@@ -1,7 +1,7 @@
 // book.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Author, Book, Publisher } from 'projects/shared/src/public-api'; 
 
 const BOOKS_API = 'http://localhost:8080/api/books';
@@ -44,8 +44,16 @@ export class BookService {
     return this.http.put<Book>(`${BOOKS_API}/${bookId}`, book);
   }
 
-  search(title: string): Observable<Book[]> {
-    return this.http.get<Book[]>(`${BOOKS_API}/title/${title}`);
+  getBookByTitle(title: string): Observable<Book[]> {
+    return this.http.get<Book[]>(`${BOOKS_API}/search-by-title/${title}`).pipe(
+      tap(data => {
+        console.log('Data received:', data);
+    }),
+    catchError(err => {
+        console.error('Error occurred:', err);
+        return throwError(err);
+    })
+    );
   }
 
   getAuthors(): Observable<Author[]> {

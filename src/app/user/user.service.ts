@@ -45,9 +45,6 @@ export class UserService {
     return this.http.get<any>(`${BORROW_API}/active/user/${userId}`);
   }
 
-  // getUserByPhone(phone: string): Observable<any> {
-  //   return this.http.get<User>(`${USERS_API}/search-by-phone/${phone}`);
-  // }
   getUserByPhone(phone: string): Observable<User> {
     return this.http.get<User>(`${USERS_API}/search-by-phone/${phone}`).pipe(
         tap(data => {

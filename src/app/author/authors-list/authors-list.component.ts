@@ -48,6 +48,7 @@ export class AuthorsListComponent implements OnInit {
   openUpdateDialog(authorId: number): void {
     const dialogRef = this.dialog.open(AuthorUpdateComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { authorId: authorId }
     });
 
@@ -59,6 +60,7 @@ export class AuthorsListComponent implements OnInit {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(AuthorInsertComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { authorId: null }
     });
 

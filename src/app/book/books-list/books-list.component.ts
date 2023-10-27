@@ -18,6 +18,7 @@ export class BooksListComponent implements OnInit {
   pageSize = 10;
   currentPage = 0;
   pageNumbers: number[] = [];
+  searchedBook: Book[] | null = null;
   @ViewChild(BorrowBookComponent, { static: false }) borrowBookComponent?: BorrowBookComponent;
 
   constructor(
@@ -61,6 +62,7 @@ export class BooksListComponent implements OnInit {
   openUpdateDialog(bookId: number): void {
     const dialogRef = this.dialog.open(BookUpdateComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { bookId: bookId }
     });
 
@@ -72,6 +74,7 @@ export class BooksListComponent implements OnInit {
   openCreateDialog(): void {
     const dialogRef = this.dialog.open(BookInsertComponent, {
       minWidth: '50%',
+      autoFocus: false,
       data: { bookId: null }
     });
 
@@ -86,5 +89,13 @@ export class BooksListComponent implements OnInit {
       // Fetch the books for the new page by calling an API with pagination.
       this.getAllBooksWithPagination(newPage);
     }
+  }
+
+  displaySearchedBook(book: Book[]): void {
+    this.searchedBook = book;
+  }
+
+  backToBooksList(): void {
+    this.searchedBook = null;
   }
 }

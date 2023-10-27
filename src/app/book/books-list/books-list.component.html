@@ -2,8 +2,53 @@
   <h1 class="text-center display-5"><span class="badge bg-dark">Books</span></h1>
   <hr>
 
-  <button (click)="openCreateDialog()" class="btn btn-success mb-3">Add new book</button>
+  <div class="d-flex mb-3">
+    
+      <button (click)="openCreateDialog()" class="btn btn-success">Add New Book</button>
+      
+      <div class="ms-auto">
+        <app-book-search-by-title (bookFound)="displaySearchedBook($event)"></app-book-search-by-title>
+      </div>
+  </div>
 
+  <div *ngIf="searchedBook">  
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>ISBN</th>
+          <th>Publisher</th>
+          <th>Pages</th>
+          <th>Publication Year</th>
+          <th>Quantity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of searchedBook">
+          <td>{{book.title}}</td>
+          <td>{{ isAuthorObject(book.author) ? (book.author.firstname + ' ' + book.author.lastname) : book.author }}</td>
+          <td>{{book.isbn}}</td>
+          <td>{{ isPublisherObject(book.publisher) ? book.publisher.name : book.publisher }}</td>
+          <td>{{book.pages}}</td>
+          <td>{{book.publicationYear}}</td>
+          <td>{{book.quantity}}</td>
+          <td>
+            <button (click)="borrowBookComponent?.openModal(book.bookId)" class="btn btn-outline-primary btn-sm mx-1" [disabled]="book.quantity === 0">Borrow</button>
+            <button (click)="openUpdateDialog(book.bookId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
+            <app-book-delete [bookId]="book.bookId" (onDeleted)="getAllBooksWithPagination(0)"></app-book-delete>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-secondary mb-3" (click)="backToBooksList()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+      </svg> Back to Books List</button>    
+  </div>
+
+<div *ngIf="!searchedBook">
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
@@ -48,8 +93,7 @@
       </li>
     </ul>
   </nav>
+</div>
 
   <app-borrow-book (bookBorrowed)="getAllBooksWithPagination(0)"></app-borrow-book>
-
 </div>
-```

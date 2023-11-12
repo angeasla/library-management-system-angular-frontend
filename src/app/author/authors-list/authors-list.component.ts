@@ -16,6 +16,7 @@ export class AuthorsListComponent implements OnInit {
   pageSize = 10;
   currentPage = 0;
   pageNumbers: number[] = [];
+  searchedAuthor: Author | null = null;
 
   constructor(
     private authorService: AuthorService,
@@ -75,5 +76,13 @@ export class AuthorsListComponent implements OnInit {
       // Fetch the authors for the new page by calling an API with pagination.
       this.getAllAuthorsWithPagination(newPage);
     }
+  }
+
+  displaySearchedAuthor(author: Author): void {
+    this.searchedAuthor = author;
+  }
+
+  backToAuthorsList(): void {
+    this.searchedAuthor = null;
   }
 }

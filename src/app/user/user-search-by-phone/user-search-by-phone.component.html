@@ -1,5 +1,5 @@
 <div class="input-group">
-    <input type="text" [(ngModel)]="phone" placeholder="Search by phone" aria-label="Example text with button addon" aria-describedby="button-addon1">
-    <button class="btn btn-primary" (click)="search()" type="button" id="button-addon1">Search</button>
+    <input type="text" [(ngModel)]="phone" placeholder="Search by phone" (keyup.enter)="search()" aria-label="Example text with button addon" aria-describedby="button-addon1">
+    <button class="btn btn-outline-primary" (click)="search()" type="button" id="button-addon1">Search</button>
 </div>
   

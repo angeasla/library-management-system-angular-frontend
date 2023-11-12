@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Publisher } from 'projects/shared/src/public-api';
 
 const PUBLISHERS_API = 'http://localhost:8080/api/publishers'
@@ -43,5 +43,17 @@ export class PublisherService {
 
   findBooksByPublisherId(publisherId: number): Observable<any> {
     return this.http.get<any>(`${BOOKS_API}/by-publisher/${publisherId}`);
+  }
+
+  getPublisherByName(name: string): Observable<Publisher> {
+    return this.http.get<Publisher>(`${PUBLISHERS_API}/search-by-name/${name}`).pipe(
+      tap(data => {
+          console.log('Data received:', data);
+      }),
+      catchError(err => {
+          console.error('Error occurred:', err);
+          return throwError(err);
+      })
+    );
   }
 }

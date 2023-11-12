@@ -16,6 +16,7 @@ export class PublishersListComponent {
   pageSize = 10;
   currentPage = 0;
   pageNumbers: number[] = [];
+  searchedPublisher: Publisher | null = null;
 
   constructor(
     private publisherService: PublisherService,
@@ -77,4 +78,12 @@ export class PublishersListComponent {
       this.getAllPublishersWithPagination(newPage);
     }
   }
+
+  displaySearchedPublisher(publisher: Publisher): void {
+    this.searchedPublisher = publisher;
+  }
+
+  backToPublishersList(): void {
+    this.searchedPublisher = null;
+    }
 }

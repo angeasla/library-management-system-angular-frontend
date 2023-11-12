@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Author } from 'projects/shared/src/public-api';
 
 const AUTHORS_API = 'http://localhost:8080/api/authors'
@@ -43,5 +43,17 @@ export class AuthorService {
 
   findBooksByAuthorId(authorId: number): Observable<any> {
     return this.http.get<any>(`${BOOKS_API}/by-author/${authorId}`);
+  }
+
+  getAuthorByLastname(lastname: string): Observable<Author> {
+    return this.http.get<Author>(`${AUTHORS_API}/search-by-name/${lastname}`).pipe(
+      tap(data => {
+          console.log('Data received:', data);
+      }),
+      catchError(err => {
+          console.error('Error occurred:', err);
+          return throwError(err);
+      })
+    );
   }
 }

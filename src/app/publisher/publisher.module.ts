@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PublisherService } from './publisher.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PublisherInsertComponent } from './publisher-insert/publisher-insert.component';
 import { PublisherUpdateComponent } from './publisher-update/publisher-update.component';
@@ -13,6 +13,7 @@ import { BooksByPublisherComponent } from './books-by-publisher/books-by-publish
 import { MatDialogModule } from '@angular/material/dialog';
 import { BookService } from '../book/book.service';
 import { BookModule } from '../book/book.module';
+import { PublisherSearchByNameComponent } from './publisher-search-by-name/publisher-search-by-name.component';
 
 const routes: Routes = [
 
@@ -30,6 +31,7 @@ const routes: Routes = [
     PublisherUpdateComponent,
     PublisherDeleteComponent,
     BooksByPublisherComponent,
+    PublisherSearchByNameComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatDialogModule,
-    BookModule
+    BookModule,
+    FormsModule
   ],
 
   providers: [PublisherService, BookService],

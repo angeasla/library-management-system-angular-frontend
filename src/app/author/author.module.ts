@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthorService } from './author.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthorsListComponent } from './authors-list/authors-list.component';
 import { AuthorInsertComponent } from './author-insert/author-insert.component';
@@ -13,6 +13,7 @@ import { BooksByAuthorComponent } from './books-by-author/books-by-author.compon
 import { MatDialogModule } from '@angular/material/dialog';
 import { BookService } from '../book/book.service';
 import { BookModule } from '../book/book.module';
+import { AuthorSearchByLastnameComponent } from './author-search-by-lastname/author-search-by-lastname.component';
 
 const routes: Routes = [
 
@@ -29,7 +30,8 @@ const routes: Routes = [
     AuthorInsertComponent,
     AuthorDeleteComponent,
     AuthorUpdateComponent,
-    BooksByAuthorComponent
+    BooksByAuthorComponent,
+    AuthorSearchByLastnameComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatSnackBarModule,
     MatDialogModule,
-    BookModule
+    BookModule,
+    FormsModule
   ],
 
   providers: [AuthorService, BookService],

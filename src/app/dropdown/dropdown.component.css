@@ -21,4 +21,9 @@
     background-color: rgb(158, 157, 157);
     color: white;
   }
+
+  .hover-highlight:hover {
+    background-color: #cfcccc;
+}
+
   

@@ -5,14 +5,18 @@
         <h5 class="modal-title" id="borrowBookModalLabel">Borrow book to user</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+
       <div class="modal-body">
-        <select class="form-select" [(ngModel)]="selectedUserId">
-          <option *ngFor="let user of users" [value]="user.userId">{{ user.phone }} | User's name: {{ user.firstname }} {{ user.lastname }} </option>
-        </select>
+        <input class="form-control" list="usersList" [(ngModel)]="selectedUserPhone" (ngModelChange)="updateSelectedUserId()" placeholder="Type to search user...">
+        <datalist id="usersList">
+          <option *ngFor="let user of users" [value]="user.phone + ' | ' + user.firstname + ' ' + user.lastname"></option>
+        </datalist>
       </div>
+
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" [disabled]="!selectedUserId" (click)="borrow()">Borrow</button>
+        <button type="button" class="btn btn-primary" [disabled]="!selectedUserId" (click)="borrowBook()">Borrow</button>
       </div>
     </div>
   </div>

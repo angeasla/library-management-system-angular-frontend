@@ -16,3 +16,9 @@
     align-items: right;
     gap: 10px;
   }
+
+  .navbar-nav .nav-item.active .nav-link {
+    background-color: rgb(158, 157, 157);
+    color: white;
+  }
+  

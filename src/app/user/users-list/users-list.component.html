@@ -2,11 +2,11 @@
   <h1 class="text-center display-5"><span class="badge bg-dark">Users</span></h1>
   <hr>
 
-  
+
   <div class="d-flex mb-3">
-    
+
     <button (click)="openCreateDialog()" class="btn btn-success mb-3">Add New User</button>
-    
+
     <div class="ms-auto">
       <app-user-search-by-phone (userFound)="displaySearchedUser($event)"></app-user-search-by-phone>
     </div>
@@ -29,16 +29,16 @@
           <td>{{searchedUser.lastname}}</td>
           <td>{{searchedUser.email}}</td>
           <td>{{searchedUser.phone}}</td>
-          <td> 
+          <td>
             <button (click)="openUpdateDialog(searchedUser.userId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-user-delete [userId]="searchedUser.userId" (onDeleted)="getAllUsersWithPagination(0)"></app-user-delete>
             <button
               *ngIf="searchedUser.activeBorrowCount > 0"
-              (click)="openActiveBorrowsDialog(searchedUser.userId)" 
+              (click)="openActiveBorrowsDialog(searchedUser.userId)"
               class="btn btn-outline-primary btn-sm mx-1">
             Active borrows
             </button>
-          </td>  
+          </td>
         </tr>
       </tbody>
     </table>
@@ -65,14 +65,19 @@
           <td>{{user.lastname}}</td>
           <td>{{user.email}}</td>
           <td>{{user.phone}}</td>
-          <td>       
+          <td>
             <button (click)="openUpdateDialog(user.userId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-user-delete [userId]="user.userId" (onDeleted)="getAllUsersWithPagination(0)"></app-user-delete>
             <button
               *ngIf="user.activeBorrowCount > 0"
-              (click)="openActiveBorrowsDialog(user.userId)" 
+              (click)="openActiveBorrowsDialog(user.userId)"
               class="btn btn-outline-primary btn-sm mx-1">
             Active borrows
+            </button>
+            <button
+              (click)="openBorrowsHistoryDialog(user.userId)"
+              class="btn btn-outline-secondary btn-sm mx-1">
+              Borrows History
             </button>
           </td>
         </tr>

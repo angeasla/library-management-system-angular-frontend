@@ -15,6 +15,7 @@ import { BorrowModule } from '../borrow/borrow.module';
 import { BorrowService } from '../borrow/borrow.service';
 import { UserSearchByPhoneComponent } from './user-search-by-phone/user-search-by-phone.component';
 import { FormsModule } from '@angular/forms';
+import { UserBorrowsHistoryComponent } from './user-borrows-history/user-borrows-history.component';
 
 const routes: Routes = [
 
@@ -33,6 +34,7 @@ const routes: Routes = [
     UserUpdateComponent,
     UserActiveBorrowsComponent,
     UserSearchByPhoneComponent,
+    UserBorrowsHistoryComponent,
   ],
   imports: [
     CommonModule,

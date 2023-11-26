@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="text-center display-5"><span class="badge bg-dark">Borrows history</span></h1>
+  <hr>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+    <tr>
+      <th>User Name</th>
+      <th>Book Title</th>
+      <th>Borrow Date</th>
+      <th>Return Date</th>
+      <th>Returned</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let borrow of borrowsHistory">
+      <td>{{borrow.userName}}</td>
+      <td>{{borrow.bookTitle}}</td>
+      <td>{{borrow.borrow.borrowDate}}</td>
+      <td>{{borrow.borrow.returnDate}}</td>
+    </tr>
+    </tbody>
+
+  </table>
+
+</div>

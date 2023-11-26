@@ -8,7 +8,7 @@ const BORROW_API = 'http://localhost:8080/api/borrows';
 @Injectable({
   providedIn: 'root'
 })
-export class BorrowService { 
+export class BorrowService {
   private bookReturnedSubject = new Subject<void>();
   public bookReturned$ = this.bookReturnedSubject.asObservable();
 
@@ -28,11 +28,11 @@ export class BorrowService {
       userId: userId,
       bookId: bookId
     };
-    
+
     return this.http.post(`${BORROW_API}/return`, returnRequest)
     .pipe(
       tap(() => {
-        this.bookReturnedSubject.next();  
+        this.bookReturnedSubject.next();
       })
     );
   }
@@ -47,5 +47,13 @@ export class BorrowService {
 
   getActiveBorrowsByUserId(userId: number): Observable<any> {
     return this.http.get<any>(`${BORROW_API}/active/user/${userId}`);
+  }
+
+  getBorrowsHistoryByUserId(userId: number): Observable<any> {
+    return this.http.get<any>(`${BORROW_API}/history/user/${userId}`);
+  }
+
+  getBorrowsHistory(): Observable<Borrow[]> {
+      return this.http.get<Borrow[]>(`${BORROW_API}/history`);
   }
 }

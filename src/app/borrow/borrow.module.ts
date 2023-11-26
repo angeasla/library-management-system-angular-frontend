@@ -14,25 +14,27 @@ import { DatePipe } from '@angular/common';
 import { ReturnBookComponent } from './return-book/return-book.component';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BorrowHistoryComponent } from './borrow-history/borrow-history.component';
 
 
 
 const routes: Routes = [
-  
+
   { path: '', redirectTo: 'active-borrows-list', pathMatch: 'full' },
   { path: 'active-borrows-list', component: ActiveBorrowListComponent },
-  
+
 ]
 
 @NgModule({
   declarations: [
     ActiveBorrowListComponent,
     ReturnBookComponent,
+    BorrowHistoryComponent,
   ],
   imports: [
     CommonModule,
     MatAutocompleteModule,
-    HttpClientModule, 
+    HttpClientModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     MatFormFieldModule,

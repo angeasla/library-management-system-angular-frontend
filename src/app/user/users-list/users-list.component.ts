@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserUpdateComponent } from '../user-update/user-update.component';
 import { UserInsertComponent } from '../user-insert/user-insert.component';
 import { UserActiveBorrowsComponent } from '../user-active-borrows/user-active-borrows.component';
+import {UserBorrowsHistoryComponent} from "../user-borrows-history/user-borrows-history.component";
 
 @Component({
   selector: 'app-users-list',
@@ -43,7 +44,7 @@ export class UsersListComponent implements OnInit {
           ...user,
           activeBorrowCount: user.borrows.filter((borrow: { returned: any; }) => !borrow.returned).length
         }));
-        this.totalUsers = response.totalElements; 
+        this.totalUsers = response.totalElements;
         this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
         console.log(this.users);
       },
@@ -86,6 +87,14 @@ export class UsersListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       this.getAllUsersWithPagination(0);
+    });
+  }
+
+  openBorrowsHistoryDialog(userId: number): void {
+    const dialogRef = this.dialog.open(UserBorrowsHistoryComponent, {
+      minWidth: '50%',
+      autoFocus: false,
+      data: { userId: userId}
     });
   }
 

@@ -1,5 +1,12 @@
 <div class="container">
-  <h1 class="text-center display-5"><span class="badge bg-dark">Authors</span></h1>
+  <ul class="nav nav-tabs">
+    <li class="nav-item display-6">
+      <a class="nav-link active">Authors</a>
+  </ul>
+  <br>
+
+  <app-statistics></app-statistics>
+
   <hr>
 
   <div class="d-flex mb-3">
@@ -23,11 +30,11 @@
         <tr>
           <td>{{searchedAuthor.firstname}}</td>
           <td>{{searchedAuthor.lastname}}</td>
-          <td> 
+          <td>
             <button (click)="openUpdateDialog(searchedAuthor.authorId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-author-delete class="mx-1" [authorId]="searchedAuthor.authorId" (onDeleted)="getAllAuthors()"></app-author-delete>
             <button [routerLink]="['/publisher/books-by-author', searchedAuthor.authorId]" class="btn btn-outline-primary btn-sm mx-1">View Books by {{ searchedAuthor.firstname }} {{ searchedAuthor.lastname }}</button>
-          </td>  
+          </td>
         </tr>
       </tbody>
     </table>
@@ -51,7 +58,7 @@
         <tr *ngFor="let author of authors">
           <td>{{author.firstname}}</td>
           <td>{{author.lastname}}</td>
-          <td>        
+          <td>
             <button (click)="openUpdateDialog(author.authorId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-author-delete class="mx-1" [authorId]="author.authorId" (onDeleted)="getAllAuthors()"></app-author-delete>
             <button [routerLink]="['/author/books-by-author', author.authorId]" class="btn btn-outline-primary btn-sm mx-1">View Books by {{ author.firstname }} {{ author.lastname }}</button>

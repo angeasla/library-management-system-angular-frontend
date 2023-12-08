@@ -23,7 +23,7 @@ export class AuthorService {
       .set('size', String(size));
 
     return this.http.get<any>(`${AUTHORS_API}/pagination`, { params });
-  }  
+  }
 
   getAuthorById(authorId: number): Observable<Author> {
     return this.http.get<Author>(`${AUTHORS_API}/${authorId}`);
@@ -55,5 +55,8 @@ export class AuthorService {
           return throwError(err);
       })
     );
+  }
+  countAuthors(): Observable<number> {
+    return this.http.get<number>(`${AUTHORS_API}/count/total`);
   }
 }

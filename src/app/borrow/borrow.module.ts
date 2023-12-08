@@ -15,6 +15,7 @@ import { ReturnBookComponent } from './return-book/return-book.component';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BorrowHistoryComponent } from './borrow-history/borrow-history.component';
+import {StatisticsModule} from "../statistics/statistics.module";
 
 
 
@@ -31,17 +32,18 @@ const routes: Routes = [
     ReturnBookComponent,
     BorrowHistoryComponent,
   ],
-  imports: [
-    CommonModule,
-    MatAutocompleteModule,
-    HttpClientModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        CommonModule,
+        MatAutocompleteModule,
+        HttpClientModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatSnackBarModule,
+        StatisticsModule
+    ],
 
   providers: [BorrowService, UserService, BookService, DatePipe],
   exports: [ RouterModule, ReturnBookComponent]

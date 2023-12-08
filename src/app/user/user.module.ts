@@ -16,6 +16,7 @@ import { BorrowService } from '../borrow/borrow.service';
 import { UserSearchByPhoneComponent } from './user-search-by-phone/user-search-by-phone.component';
 import { FormsModule } from '@angular/forms';
 import { UserBorrowsHistoryComponent } from './user-borrows-history/user-borrows-history.component';
+import {StatisticsModule} from "../statistics/statistics.module";
 
 const routes: Routes = [
 
@@ -38,13 +39,14 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    HttpClientModule, 
+    HttpClientModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     MatSnackBarModule,
     MatDialogModule,
     BorrowModule,
-    FormsModule
+    FormsModule,
+    StatisticsModule
   ],
 
   providers: [UserService, BorrowService],

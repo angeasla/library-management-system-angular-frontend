@@ -14,6 +14,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BookService } from '../book/book.service';
 import { BookModule } from '../book/book.module';
 import { PublisherSearchByNameComponent } from './publisher-search-by-name/publisher-search-by-name.component';
+import {StatisticsModule} from "../statistics/statistics.module";
 
 const routes: Routes = [
 
@@ -33,16 +34,17 @@ const routes: Routes = [
     BooksByPublisherComponent,
     PublisherSearchByNameComponent,
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    BookModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatDialogModule,
+        BookModule,
+        FormsModule,
+        StatisticsModule
+    ],
 
   providers: [PublisherService, BookService],
   exports: [PublishersListComponent, PublisherInsertComponent, RouterModule]

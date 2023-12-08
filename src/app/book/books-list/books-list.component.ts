@@ -22,7 +22,7 @@ export class BooksListComponent implements OnInit {
   @ViewChild(BorrowBookComponent, { static: false }) borrowBookComponent?: BorrowBookComponent;
 
   constructor(
-    private bookService: BookService, 
+    private bookService: BookService,
     private userService: UserService,
     private dialog: MatDialog
     ) { }
@@ -42,13 +42,13 @@ export class BooksListComponent implements OnInit {
     this.bookService.getAllBooksWithPagination(page, 10).subscribe({
         next: response => {
             this.books = response.content;
-            this.totalBooks = response.totalElements; 
+            this.totalBooks = response.totalElements;
             this.pageNumbers = Array.from({length: response.totalPages}, (_, i) => i);
         },
         error: error => {
             console.error("Error fetching books:", error);
         }
-    });  
+    });
 }
 
   isPublisherObject(publisher: any): publisher is { publisherId: number; name?: string } {

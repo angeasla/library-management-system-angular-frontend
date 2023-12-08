@@ -10,10 +10,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BookDeleteComponent } from './book-delete/book-delete.component';
 import { BookUpdateComponent } from './book-update/book-update.component';
 import { BorrowBookComponent } from './borrow-book/borrow-book.component';
-import { BorrowModule } from '../borrow/borrow.module'; 
+import { BorrowModule } from '../borrow/borrow.module';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BookSearchByTitleComponent } from './book-search-by-title/book-search-by-title.component';
+import {StatisticsModule} from "../statistics/statistics.module";
 
 const routes: Routes = [
   { path: '', redirectTo: 'books-list', pathMatch: 'full' },
@@ -32,16 +33,17 @@ const routes: Routes = [
     BorrowBookComponent,
     BookSearchByTitleComponent
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule, 
-    RouterModule.forChild(routes),
-    ReactiveFormsModule,
-    MatSnackBarModule,
-    BorrowModule,
-    FormsModule,
-    MatDialogModule,
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        RouterModule.forChild(routes),
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        BorrowModule,
+        FormsModule,
+        MatDialogModule,
+        StatisticsModule,
+    ],
 
   providers: [ BookService ],
   exports: [ BooksListComponent, BookInsertComponent, BookDeleteComponent, RouterModule ]

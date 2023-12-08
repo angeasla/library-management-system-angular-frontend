@@ -1,6 +1,9 @@
 <div class="container p-4 mat-dialog-content">
-    <h3 class="text-center"><span class="badge bg-secondary">Update User: {{ userForm.value.firstname }} {{ userForm.value.lastname }}</span></h3>
-    <hr>
+  <ul class="nav nav-underline">
+    <li class="nav-item">
+      <a class="nav-link active">Update User: {{ userForm.value.firstname }} {{ userForm.value.lastname }}</a>
+  </ul>
+  <hr>
 
     <form [formGroup]="userForm" (ngSubmit)="updateUser()">
 
@@ -8,22 +11,22 @@
             <label for="firstname" class="form-label fw-bold">Name:</label>
             <input id="firstname" type="text" class="form-control" formControlName="firstname" name="firstname" required>
         </div>
-    
+
         <div class="mb-3 form-group">
             <label for="lastname" class="form-label fw-bold">Surname:</label>
             <input id="lastname" type="text" class="form-control" formControlName="lastname" name="lastname" required>
         </div>
-    
+
         <div class="mb-3 form-group">
             <label for="email" class="form-label fw-bold">e-mail:</label>
             <input id="email" type="text" class="form-control" formControlName="email" name="email" required>
         </div>
-    
+
         <div class="mb-3 form-group">
             <label for="phone" class="form-label fw-bold">Phone:</label>
             <input id="phone" type="text" class="form-control" formControlName="phone" name="phone" required>
         </div>
-    
+
         <div class="mb-3 form-group">
             <button type="submit" class="btn btn-primary">Update User</button>
             <button type="button" class="btn btn-secondary ms-3" (click)="onCancelClick()">Cancel</button>

@@ -1,5 +1,8 @@
 <div class="container p-4 mat-dialog-content">
-    <h3 class="text-center"><span class="badge bg-secondary">Update Author: {{ authorForm.value.firstname }} {{ authorForm.value.lastname }}</span></h3>
+  <ul class="nav nav-underline">
+    <li class="nav-item">
+      <a class="nav-link active">Update Author: {{ authorForm.value.firstname }} {{ authorForm.value.lastname }}</a>
+  </ul>
     <hr>
 
     <form [formGroup]="authorForm" (ngSubmit)="updateAuthor()">

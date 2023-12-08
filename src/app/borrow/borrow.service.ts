@@ -56,4 +56,12 @@ export class BorrowService {
   getBorrowsHistory(): Observable<Borrow[]> {
       return this.http.get<Borrow[]>(`${BORROW_API}/history`);
   }
+
+  countTotalBorrows(): Observable<number> {
+    return this.http.get<number>(`${BORROW_API}/count/total`);
+  }
+
+  countActiveBorrows(): Observable<number> {
+    return this.http.get<number>(`${BORROW_API}/count/active`);
+  }
 }

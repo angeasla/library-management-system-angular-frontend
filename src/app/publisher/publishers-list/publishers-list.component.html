@@ -1,5 +1,11 @@
 <div class="container">
-  <h1 class="text-center display-5"><span class="badge bg-dark">Publishers</span></h1>
+  <ul class="nav nav-tabs">
+    <li class="nav-item display-6">
+      <a class="nav-link active">Publishers</a>
+  </ul>
+  <br>
+
+  <app-statistics></app-statistics>
   <hr>
 
   <div class="d-flex mb-3">
@@ -21,11 +27,11 @@
       <tbody>
         <tr>
           <td>{{searchedPublisher.name}}</td>
-          <td> 
+          <td>
             <button (click)="openUpdateDialog(searchedPublisher.publisherId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-publisher-delete class="mx-1" [publisherId]="searchedPublisher.publisherId" (onDeleted)="getAllPublishers()"></app-publisher-delete>
             <button [routerLink]="['/publisher/books-by-publisher', searchedPublisher.publisherId]" class="btn btn-outline-primary btn-sm mx-1">View Books by {{ searchedPublisher.name }}</button>
-          </td>  
+          </td>
         </tr>
       </tbody>
     </table>
@@ -46,7 +52,7 @@
       <tbody>
         <tr *ngFor="let publisher of publishers">
           <td>{{publisher.name}}</td>
-          <td>        
+          <td>
             <button (click)="openUpdateDialog(publisher.publisherId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-publisher-delete class="mx-1" [publisherId]="publisher.publisherId" (onDeleted)="getAllPublishers()"></app-publisher-delete>
             <button [routerLink]="['/publisher/books-by-publisher', publisher.publisherId]" class="btn btn-outline-primary btn-sm mx-1">View Books by {{ publisher.name }}</button>

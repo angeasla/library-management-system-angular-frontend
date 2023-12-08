@@ -55,6 +55,9 @@ export class UserService {
             return throwError(err);
         })
     );
-}
+  }
 
+  countUsers(): Observable<number> {
+    return this.http.get<number>(`${USERS_API}/count/total`);
+  }
 }

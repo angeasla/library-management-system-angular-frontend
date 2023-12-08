@@ -56,4 +56,8 @@ export class PublisherService {
       })
     );
   }
+
+  countPublishers(): Observable<number> {
+    return this.http.get<number>(`${PUBLISHERS_API}/count/total`);
+  }
 }

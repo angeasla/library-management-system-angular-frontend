@@ -75,15 +75,15 @@
             <button (click)="openUpdateDialog(user.userId)" class="btn btn-outline-warning btn-sm mx-1">Update</button>
             <app-user-delete [userId]="user.userId" (onDeleted)="getAllUsersWithPagination(0)"></app-user-delete>
             <button
-              *ngIf="user.activeBorrowCount > 0"
-              (click)="openActiveBorrowsDialog(user.userId)"
-              class="btn btn-outline-primary btn-sm mx-1">
-            Active borrows
-            </button>
-            <button
               (click)="openBorrowsHistoryDialog(user.userId)"
               class="btn btn-outline-secondary btn-sm mx-1">
               Borrows History
+            </button>
+            <button
+              *ngIf="user.activeBorrowCount > 0"
+              (click)="openActiveBorrowsDialog(user.userId)"
+              class="btn btn-outline-primary btn-sm mx-1">
+              Active borrows
             </button>
           </td>
         </tr>

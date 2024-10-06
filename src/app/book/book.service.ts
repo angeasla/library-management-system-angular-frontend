@@ -3,11 +3,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Author, Book, Publisher } from 'projects/shared/src/public-api';
+import {environment} from "../../environment/environment";
 
-const BOOKS_API = 'http://localhost:8080/api/books';
-const AUTHORS_API = 'http://localhost:8080/api/authors';
-const PUBLISHERS_API = 'http://localhost:8080/api/publishers';
-const BORROWS_API = 'http://localhost:8080/api/borrows';
+const BOOKS_API = `${environment.apiUrl}/books`;
+const AUTHORS_API = `${environment.apiUrl}/authors`;
+const PUBLISHERS_API = `${environment.apiUrl}/publishers`;
+const BORROWS_API = `${environment.apiUrl}/borrows`;
 
 @Injectable({
   providedIn: 'root'

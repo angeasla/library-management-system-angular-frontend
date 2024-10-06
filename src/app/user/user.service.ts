@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from 'projects/shared/src/public-api';
+import {environment} from "../../environment/environment";
 
-const USERS_API = 'http://localhost:8080/api/users'
-const BORROW_API = 'http://localhost:8080/api/borrows'
+const USERS_API = `${environment.apiUrl}/users`
+const BORROW_API = `${environment.apiUrl}/borrows`
 
 @Injectable({
   providedIn: 'root'

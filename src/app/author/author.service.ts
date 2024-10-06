@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Author } from 'projects/shared/src/public-api';
+import {environment} from "../../environment/environment";
 
-const AUTHORS_API = 'http://localhost:8080/api/authors'
-const BOOKS_API = 'http://localhost:8080/api/books'
+const AUTHORS_API = `${environment.apiUrl}/authors`
+const BOOKS_API = `${environment.apiUrl}/books`
 
 @Injectable({
   providedIn: 'root'

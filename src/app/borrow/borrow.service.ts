@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Borrow, Book, User } from 'projects/shared/src/public-api';
+import {environment} from "../../environment/environment";
 
-const BORROW_API = 'http://localhost:8080/api/borrows';
+const BORROW_API = `${environment.apiUrl}/borrows`;
 
 @Injectable({
   providedIn: 'root'

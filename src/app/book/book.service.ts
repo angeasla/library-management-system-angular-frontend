@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, catchError, tap, throwError } from 'rxjs';
 import { Author, Book, Publisher } from 'projects/shared/src/public-api';
-import {environment} from "../../environment/environment";
+import {environment} from "../../environments/environment";
 
 const BOOKS_API = `${environment.apiUrl}/books`;
 const AUTHORS_API = `${environment.apiUrl}/authors`;

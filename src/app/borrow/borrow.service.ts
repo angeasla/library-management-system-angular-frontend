@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Borrow, Book, User } from 'projects/shared/src/public-api';
-import {environment} from "../../environment/environment";
+import {environment} from "../../environments/environment";
 
 const BORROW_API = `${environment.apiUrl}/borrows`;
 

@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BorrowHistoryComponent } from './borrow-history/borrow-history.component';
 import {StatisticsModule} from "../statistics/statistics.module";
+import { SharedTranslationModule } from '../shared/shared.module';
 
 
 
@@ -42,7 +43,8 @@ const routes: Routes = [
         MatInputModule,
         FormsModule,
         MatSnackBarModule,
-        StatisticsModule
+        StatisticsModule,
+        SharedTranslationModule
     ],
 
   providers: [BorrowService, UserService, BookService, DatePipe],

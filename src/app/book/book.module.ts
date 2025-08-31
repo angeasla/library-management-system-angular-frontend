@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BookSearchByTitleComponent } from './book-search-by-title/book-search-by-title.component';
 import {StatisticsModule} from "../statistics/statistics.module";
+import { SharedTranslationModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'books-list', pathMatch: 'full' },
@@ -43,6 +44,7 @@ const routes: Routes = [
         FormsModule,
         MatDialogModule,
         StatisticsModule,
+        SharedTranslationModule,
     ],
 
   providers: [ BookService ],

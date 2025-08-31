@@ -15,6 +15,7 @@ import { BookService } from '../book/book.service';
 import { BookModule } from '../book/book.module';
 import { PublisherSearchByNameComponent } from './publisher-search-by-name/publisher-search-by-name.component';
 import {StatisticsModule} from "../statistics/statistics.module";
+import { SharedTranslationModule } from '../shared/shared.module';
 
 const routes: Routes = [
 
@@ -43,7 +44,8 @@ const routes: Routes = [
         MatDialogModule,
         BookModule,
         FormsModule,
-        StatisticsModule
+        StatisticsModule,
+        SharedTranslationModule
     ],
 
   providers: [PublisherService, BookService],

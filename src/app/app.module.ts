@@ -8,6 +8,7 @@ import { SharedModule } from 'projects/shared/src/public-api';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedTranslationModule } from './shared/shared.module';
 
 const routes: Routes = [  
 
@@ -40,6 +41,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SharedModule,
     BrowserAnimationsModule,
+    SharedTranslationModule,
   ],
   exports: [RouterModule],
   providers: [],

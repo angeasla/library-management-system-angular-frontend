@@ -3,7 +3,7 @@
       <div class="d-flex justify-content-between align-items-center">
       <a class="navbar-brand" href="#">
         <img src="../../assets/logo-no-background.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-        Library Management System
+        {{ 'navigation.home' | translate }}
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -11,19 +11,19 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link hover-highlight active" aria-current="page" routerLink="/user/users-list">Users</a>
+            <a class="nav-link hover-highlight active" aria-current="page" routerLink="/user/users-list">{{ 'navigation.users' | translate }}</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link hover-highlight active" routerLink="/book/books-list">Books</a>
+            <a class="nav-link hover-highlight active" routerLink="/book/books-list">{{ 'navigation.books' | translate }}</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link hover-highlight active" routerLink="/publisher/publishers-list">Publishers</a>
+            <a class="nav-link hover-highlight active" routerLink="/publisher/publishers-list">{{ 'navigation.publishers' | translate }}</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link hover-highlight active" routerLink="/author/authors-list">Authors</a>
+            <a class="nav-link hover-highlight active" routerLink="/author/authors-list">{{ 'navigation.authors' | translate }}</a>
           </li>
           <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link hover-highlight active" routerLink="/borrow/active-borrows-list">Borrows</a>
+            <a class="nav-link hover-highlight active" routerLink="/borrow/active-borrows-list">{{ 'navigation.borrows' | translate }}</a>
           </li>
         </ul>
       </div>

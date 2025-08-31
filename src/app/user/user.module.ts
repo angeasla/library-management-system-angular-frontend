@@ -17,6 +17,7 @@ import { UserSearchByPhoneComponent } from './user-search-by-phone/user-search-b
 import { FormsModule } from '@angular/forms';
 import { UserBorrowsHistoryComponent } from './user-borrows-history/user-borrows-history.component';
 import {StatisticsModule} from "../statistics/statistics.module";
+import { SharedTranslationModule } from '../shared/shared.module';
 
 const routes: Routes = [
 
@@ -46,7 +47,8 @@ const routes: Routes = [
     MatDialogModule,
     BorrowModule,
     FormsModule,
-    StatisticsModule
+    StatisticsModule,
+    SharedTranslationModule
   ],
 
   providers: [UserService, BorrowService],
